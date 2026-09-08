@@ -1,0 +1,241 @@
+<div class="plan-page-container">
+
+  <!-- Compact Action Bar -->
+  <aside class="action-bar no-print" aria-label="أدوات الصفحة">
+    <div class="action-bar-inner">
+
+      <div class="action-start">
+        <button type="button" class="btn-action btn-back" id="back-to-selection-btn">
+          <span class="btn-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 19 12 12 5"></polyline>
+            </svg>
+          </span>
+
+          <span [routerLink]="['/select']">العودة لصفحة الاختيار</span>
+        </button>
+      </div>
+
+      <div class="action-meta">
+        <span class="meta-indicator" aria-hidden="true"></span>
+        <span class="meta-text">معاينة مستند الخطة الأسبوعية</span>
+      </div>
+
+      <div class="action-end">
+        <button type="button" class="btn-action btn-print" id="print-plan-btn">
+          <span class="btn-icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+          </span>
+
+          <span>طباعة الخطة</span>
+        </button>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- Printable Document -->
+  <div class="document-sheet" id="printable-document" role="document">
+
+    <!-- Document Official Header (Matching Ministry Official Reference) -->
+    <header class="document-header">
+
+      <!-- Right Column: Official Hierarchy -->
+      <div class="header-side-col right-col">
+        <span class="header-line">المملكة العربية السعودية</span>
+        <span class="header-line">وزارة التعليم</span>
+        <span class="header-line">الإدارة العامة للتعليم بمنطقة المدينة المنورة</span>
+        <span class="header-line school-title">الثانوية العشرون</span>
+      </div>
+
+      <!-- Center Column: Ministry of Education Official Logo -->
+      <div class="header-center-col">
+        <img src="logo.jpg" alt="وزارة التعليم - Ministry of Education" class="ministry-logo-img" />
+      </div>
+
+      <!-- Left Column: Document Title & Academic Details -->
+      <div class="header-side-col left-col">
+        <h1 class="doc-title-main">الخطة الأسبوعية</h1>
+        <span class="header-line doc-dynamic">{{ gradeName }}</span>
+        <span class="header-line doc-dynamic">{{ weekName }}</span>
+        <span class="header-line">الفصل الدراسي الأول</span>
+        <span class="header-line">للعام الدراسي ١٤٤٨ - ١٤٤٩ هـ</span>
+      </div>
+
+    </header>
+
+
+    <!-- Main Table -->
+    <div class="table-scroll-wrapper">
+
+      <table class="plan-table" role="table" aria-label="جدول الخطة الأسبوعية">
+
+        <thead>
+
+          <tr>
+
+            <th scope="col" class="th-subject">
+              المادة
+            </th>
+
+            <th scope="col" class="th-task">
+              المهمة
+            </th>
+
+            <th scope="col" class="th-day">
+              <span class="day-title">الأحد</span>
+              <span class="day-date">١٨ / ٣ / ١٤٤٦ هـ</span>
+            </th>
+
+            <th scope="col" class="th-day">
+              <span class="day-title">الاثنين</span>
+              <span class="day-date">١٩ / ٣ / ١٤٤٦ هـ</span>
+            </th>
+
+            <th scope="col" class="th-day">
+              <span class="day-title">الثلاثاء</span>
+              <span class="day-date">٢٠ / ٣ / ١٤٤٦ هـ</span>
+            </th>
+
+            <th scope="col" class="th-day">
+              <span class="day-title">الأربعاء</span>
+              <span class="day-date">٢١ / ٣ / ١٤٤٦ هـ</span>
+            </th>
+
+            <th scope="col" class="th-day">
+              <span class="day-title">الخميس</span>
+              <span class="day-date">٢٢ / ٣ / ١٤٤٦ هـ</span>
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          @if (isLoading || !subjectData) {
+
+          <tr class="loading-row">
+            <td colspan="7" class="loading-cell">
+              <div class="table-loading-container">
+                <div class="loading-spinner-wrapper">
+                  <div class="loading-spinner"></div>
+                  <div class="loading-pulse-ring"></div>
+                </div>
+                <p class="loading-text">جاري تحميل بيانات الخطة الأسبوعية...</p>
+                <p class="loading-subtext">يرجى الانتظار لحظات لجلب البيانات المعتمدة</p>
+              </div>
+            </td>
+          </tr>
+
+          } @else {
+
+          @for (subject of gradeSubjects; track $index) {
+
+          <!-- البحث عن بيانات المادة الحالية -->
+          @if (subjectData) {
+
+          @for (subjectObject of subjectData; track $index) {
+
+          @if (subjectObject.subject === subject) {
+
+          <!-- Lesson Row -->
+          <tr class="subject-row lesson-row">
+
+            <td class="td-subject" rowspan="2">
+              <div class="subject-info">
+                <span class="subject-name">
+                  {{ subject }}
+                </span>
+              </div>
+            </td>
+
+            <td class="td-task td-task-lesson">
+              <span class="task-badge task-lesson">
+                الدرس
+              </span>
+            </td>
+
+            @for (day of subjectObject.days; track $index) {
+
+            <td class="td-day td-day-lesson">
+
+              <p class="cell-content lesson-content">
+                {{ day.lesson }}
+              </p>
+
+            </td>
+
+            }
+
+          </tr>
+
+          <!-- Homework Row -->
+          <tr class="subject-row homework-row">
+
+            <td class="td-task td-task-homework">
+              <span class="task-badge task-homework">
+                الواجب
+              </span>
+            </td>
+
+            @for (day of subjectObject.days; track $index) {
+
+            <td class="td-day td-day-homework">
+
+              <p class="cell-content homework-content">
+                {{ day.homework }}
+              </p>
+
+            </td>
+
+            }
+
+          </tr>
+
+          }
+
+          }
+
+          }
+
+          }
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+    <!-- Approval & Signature Area -->
+    <footer class="doc-approval-section">
+
+      <div class="approval-grid">
+
+        <div class="approval-box">
+          <span class="role-title">وكيلة الشؤون التعليمية</span>
+          <span class="role-name">عفاف الرحيلي</span>
+        </div>
+
+        <div class="approval-box">
+          <span class="role-title">مديرة المدرسة</span>
+          <span class="role-name">حنان أحمد اليحيوي</span>
+        </div>
+
+      </div>
+
+    </footer>
+
+  </div>
+
+</div>

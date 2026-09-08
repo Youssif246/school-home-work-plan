@@ -1,1 +1,154 @@
-/* You can add global styles to this file, and also import other style files */
+/* ==========================================================================
+   Design System & Global Styles - الثانوية العشرون
+   Modern Saudi Educational Visual Identity
+   ========================================================================== */
+
+:root {
+  /* Primary Saudi Educational Green Palette */
+  --color-primary-900: #071F18;
+  --color-primary-800: #09281F;
+  --color-primary-700: #0D3B2E; /* Core brand green */
+  --color-primary-600: #124D3C;
+  --color-primary-500: #17604B;
+  --color-primary-400: #248166;
+  --color-primary-100: #E3EDE8;
+  --color-primary-50:  #F0F6F3;
+
+  /* Secondary Refined Champagne Gold Accents */
+  --color-gold-700: #8C6F45;
+  --color-gold-600: #A68759;
+  --color-gold-500: #C5A880; /* Core refined gold */
+  --color-gold-400: #D6BD9B;
+  --color-gold-300: #E6D4BD;
+  --color-gold-100: #F7F3EC;
+  --color-gold-50:  #FAF8F5;
+
+  /* Neutral Surface & Background Tones */
+  --color-bg: #FBFBF9;
+  --color-bg-subtle: #F4F5F0;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F8F9F6;
+  
+  /* Text & Readability Hierarchies */
+  --color-text-primary: #15221C;
+  --color-text-secondary: #4A5851;
+  --color-text-muted: #738079;
+  --color-text-inverse: #FFFFFF;
+
+  /* Refined Borders & Dividers */
+  --color-border-subtle: rgba(13, 59, 46, 0.07);
+  --color-border-default: rgba(13, 59, 46, 0.12);
+  --color-border-focus: #0D3B2E;
+
+  /* Shadows - Layered & Ambient */
+  --shadow-sm: 0 1px 3px rgba(13, 59, 46, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 16px -2px rgba(13, 59, 46, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 12px 32px -4px rgba(13, 59, 46, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+  --shadow-xl: 0 24px 48px -8px rgba(13, 59, 46, 0.10), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 0 4px rgba(13, 59, 46, 0.12);
+  --shadow-gold-glow: 0 0 0 4px rgba(197, 168, 128, 0.28);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Typography */
+  --font-arabic: 'IBM Plex Sans Arabic', 'Tajawal', system-ui, -apple-system, sans-serif;
+  --font-heading: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+
+  /* Transitions */
+  --transition-fast: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* CSS Reset & Foundation */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.6;
+  direction: rtl;
+  text-align: right;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-arabic);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle Saudi Architectural Geometric Background Pattern */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%230D3B2E' stroke-width='1.2'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z'/%3E%3Cpath d='M40 14 L66 40 L40 66 L14 40 Z'/%3E%3Ccircle cx='40' cy='40' r='8'/%3E%3Cpath d='M0 0 L14 14 M80 0 L66 14 M80 80 L66 66 M0 80 L14 66'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 80px 80px;
+}
+
+/* Soft Radial Atmospheric Lights */
+body::after {
+  content: '';
+  position: fixed;
+  top: -150px;
+  right: 15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(13, 59, 46, 0.045) 0%, rgba(197, 168, 128, 0.035) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(40px);
+}
+
+/* Focus Styling */
+:focus-visible {
+  outline: 2px solid var(--color-primary-700);
+  outline-offset: 3px;
+}
+
+button, select, input {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Base Container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Global Print Rules */
+@media print {
+  .site-header,
+  .site-footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body::before,
+  body::after {
+    display: none !important;
+  }
+}
+

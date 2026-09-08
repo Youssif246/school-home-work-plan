@@ -1,0 +1,988 @@
+/* ==========================================================================
+   Weekly Plan Display Page Styles - الثانوية العشرون
+   Official Saudi Institutional Document Design (Screen & A4 Landscape Print)
+   ========================================================================== */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+}
+
+.plan-page-container {
+  padding: 2rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ==========================================================================
+   Compact Action Bar (Screen Only)
+   ========================================================================== */
+
+.action-bar {
+  width: 100%;
+  max-width: 1220px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 0.75rem 1.25rem;
+}
+
+.action-bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.action-start,
+.action-end {
+  display: flex;
+  align-items: center;
+}
+
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-normal);
+  font-family: inherit;
+}
+
+.btn-back {
+  background: var(--color-surface-muted);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-default);
+}
+
+.btn-back:hover {
+  background: #FFFFFF;
+  color: var(--color-primary-800);
+  border-color: var(--color-primary-500);
+  transform: translateX(2px);
+}
+
+.btn-print {
+  background: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-primary-600) 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(197, 168, 128, 0.5);
+  box-shadow: 0 2px 8px rgba(13, 59, 46, 0.2);
+}
+
+.btn-print:hover {
+  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-500) 100%);
+  box-shadow: 0 4px 14px rgba(13, 59, 46, 0.3);
+  transform: translateY(-1px);
+}
+
+.action-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.meta-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold-500);
+}
+
+/* ==========================================================================
+   Printable Document Sheet (Screen Representation)
+   ========================================================================== */
+
+.document-sheet {
+  width: 100%;
+  max-width: 1220px;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: 2.25rem 2.25rem 2rem;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Top Accent Stripe on Document */
+.document-sheet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-700) 0%, var(--color-gold-500) 50%, var(--color-primary-700) 100%);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+   Document Official Header
+   ========================================================================== */
+
+.document-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1.5px solid var(--color-border-default, #CBD5E1);
+}
+
+.header-side-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.2rem;
+}
+
+.header-line {
+  font-size: 0.88rem;
+  color: #1E293B;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.header-line.school-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--color-primary-900, #0D3B2E);
+  margin-top: 0.1rem;
+}
+
+.header-center-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.ministry-logo-img {
+  height: 80px;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+.doc-title-main {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--color-primary-900, #0D3B2E);
+  margin: 0 0 0.2rem 0;
+  line-height: 1.3;
+}
+
+.header-line.doc-dynamic {
+  font-weight: 600;
+  color: #1E293B;
+}
+
+/* ==========================================================================
+   Weekly Plan Table (Refined 6-Column Saudi Institutional Design)
+   ========================================================================== */
+
+.table-scroll-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.75rem;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+}
+
+.plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: #FFFFFF;
+}
+
+/* Refined Table Header - Elegant Dark Green & Champagne Gold */
+.plan-table thead th {
+  background: linear-gradient(180deg, #0D3B2E 0%, #09281F 100%);
+  color: #FFFFFF;
+  padding: 0.95rem 0.9rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-align: right;
+  border-bottom: 2.5px solid var(--color-gold-500);
+  white-space: nowrap;
+}
+
+.plan-table thead th.th-subject {
+  width: 14%;
+  min-width: 125px;
+  color: #FFFFFF;
+}
+
+.plan-table thead th.th-task {
+  width: 8%;
+  min-width: 75px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.plan-table thead th.th-day {
+  width: 15.6%;
+  min-width: 130px;
+}
+
+.day-title {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.25;
+}
+
+.day-date {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--color-gold-300);
+  margin-top: 3px;
+  letter-spacing: 0.01em;
+}
+
+/* Subject Rows & Structural Separation */
+.subject-row {
+  transition: background-color var(--transition-fast);
+}
+
+.lesson-row {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid rgba(13, 59, 46, 0.08);
+  /* thin, elegant divider between lesson and homework */
+}
+
+.homework-row {
+  background-color: #FBFBF9;
+  /* subtle warm off-white */
+  border-bottom: 2px solid rgba(13, 59, 46, 0.16);
+  /* distinct separator between subjects */
+}
+
+.plan-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.lesson-row:hover {
+  background-color: #F8FAF8;
+}
+
+.homework-row:hover {
+  background-color: #F5F5EE;
+}
+
+/* Table Cells Base */
+.plan-table tbody td {
+  padding: 0.65rem 0.85rem;
+  vertical-align: middle;
+  border-left: 1px solid rgba(13, 59, 46, 0.06);
+}
+
+.plan-table tbody td:last-child {
+  border-left: none;
+}
+
+/* 1. Material Column (Spanning Both Rows) */
+.td-subject {
+  vertical-align: middle !important;
+  text-align: right;
+  background-color: #FFFFFF;
+  border-right: 3.5px solid var(--color-primary-700);
+  width: 14%;
+  min-width: 125px;
+}
+
+.subject-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-start;
+}
+
+.subject-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary-800);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.subject-code {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--color-gold-700);
+  background: var(--color-gold-50);
+  border: 1px solid var(--color-gold-300);
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* 2. Task Column (الدرس / الواجب) */
+.td-task {
+  text-align: center;
+  vertical-align: middle !important;
+  width: 8%;
+  min-width: 75px;
+  padding: 0.65rem 0.4rem !important;
+}
+
+.td-task-lesson {
+  background-color: #FFFFFF;
+}
+
+.td-task-homework {
+  background-color: #FBFBF9;
+}
+
+.task-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  letter-spacing: 0.01em;
+}
+
+.task-lesson {
+  color: #0D3B2E;
+  background: rgba(13, 59, 46, 0.06);
+  border-right: 2.5px solid #0D3B2E;
+}
+
+.task-homework {
+  color: #8C6F45;
+  background: rgba(197, 168, 128, 0.14);
+  border-right: 2.5px solid #C5A880;
+}
+
+/* 3. Daily Content Cells */
+.td-day {
+  width: 15.6%;
+  min-width: 130px;
+  vertical-align: middle;
+}
+
+.td-day-lesson {
+  background-color: #FFFFFF;
+}
+
+.td-day-homework {
+  background-color: #FBFBF9;
+}
+
+.cell-content {
+  margin: 0;
+  word-break: break-word;
+}
+
+.lesson-content {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: #0F172A;
+  line-height: 1.42;
+}
+
+.homework-content {
+  font-size: 0.89rem;
+  font-weight: 400;
+  color: #37474F;
+  line-height: 1.42;
+}
+
+/* ==========================================================================
+   Approval & Signatures Area (Official Document Finish)
+   ========================================================================== */
+
+.doc-approval-section {
+  border-top: 1.5px solid var(--color-border-default);
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+}
+
+.approval-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 650px;
+  margin: 0 auto 1.5rem auto;
+  gap: 4rem;
+  align-items: center;
+}
+
+.approval-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.role-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary-800);
+  margin-bottom: 0.35rem;
+}
+
+.role-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.signature-line {
+  width: 180px;
+  height: 1px;
+  border-bottom: 1px dashed var(--color-border-default);
+  margin-bottom: 0.45rem;
+}
+
+.role-sub {
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+
+/* Security Footer */
+.doc-security-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border-subtle);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.security-code {
+  font-family: monospace;
+  font-weight: 600;
+  color: var(--color-primary-700);
+}
+
+/* ==========================================================================
+   Table Loading State
+   ========================================================================== */
+
+.loading-row {
+  height: 240px;
+}
+
+.loading-cell {
+  padding: 3.5rem 1rem !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  background-color: #FFFFFF !important;
+  border: 1px solid rgba(13, 59, 46, 0.12) !important;
+}
+
+.table-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.loading-spinner-wrapper {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3.5px solid rgba(13, 59, 46, 0.12);
+  border-top-color: #0D3B2E;
+  border-right-color: #C5A880;
+  border-radius: 50%;
+  animation: tableSpin 0.9s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.loading-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(197, 168, 128, 0.35);
+  border-radius: 50%;
+  animation: tablePulse 1.8s ease-out infinite;
+}
+
+@keyframes tableSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes tablePulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.loading-text {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0D3B2E;
+  letter-spacing: -0.01em;
+}
+
+.loading-subtext {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #738079;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Responsive Adaptations (Tablet & Mobile Screens)
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .document-header {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .header-center-col {
+    padding: 0 0.5rem;
+  }
+
+  .ministry-logo-img {
+    height: 62px;
+    max-width: 120px;
+  }
+
+  .header-line {
+    font-size: 0.8rem;
+  }
+
+  .doc-title-main {
+    font-size: 1.05rem;
+  }
+
+  .approval-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .plan-page-container {
+    padding: 0.75rem 0.5rem 2.5rem;
+  }
+
+  .document-sheet {
+    padding: 1.1rem 0.65rem 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .document-header {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.35rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .header-side-col {
+    gap: 0.1rem;
+  }
+
+  .header-center-col {
+    padding: 0 0.2rem;
+  }
+
+  .ministry-logo-img {
+    height: 46px;
+    max-width: 80px;
+  }
+
+  .header-line {
+    font-size: 0.62rem;
+    line-height: 1.25;
+  }
+
+  .header-line.school-title {
+    font-size: 0.72rem;
+    margin-top: 0.05rem;
+  }
+
+  .doc-title-main {
+    font-size: 0.82rem;
+    margin-bottom: 0.05rem;
+  }
+
+  .approval-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .role-title {
+    font-size: 0.8rem;
+  }
+
+  .role-name {
+    font-size: 0.82rem;
+  }
+
+  .doc-security-footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.35rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .document-header {
+    gap: 0.2rem;
+  }
+
+  .ministry-logo-img {
+    height: 38px;
+    max-width: 65px;
+  }
+
+  .header-line {
+    font-size: 0.56rem;
+    line-height: 1.2;
+  }
+
+  .header-line.school-title {
+    font-size: 0.66rem;
+  }
+
+  .doc-title-main {
+    font-size: 0.74rem;
+  }
+}
+
+/* ==========================================================================
+   PRINT STYLES (@media print)
+   Strictly Formatted for Official A4 Landscape Document Output
+   ========================================================================== */
+
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm 10mm;
+  }
+
+  html,
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 12px;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body::before,
+  body::after {
+    display: none !important;
+  }
+
+  /* Completely Hide Screen Navigation & Actions */
+  .no-print,
+  .action-bar,
+  .loading-row,
+  .loading-cell,
+  .table-loading-container,
+  header.site-header,
+  footer.site-footer {
+    display: none !important;
+  }
+
+  .plan-page-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    background: transparent !important;
+    display: block !important;
+  }
+
+  .document-sheet {
+    box-shadow: none !important;
+    border: 1.5px solid #0D3B2E !important;
+    border-radius: 0 !important;
+    padding: 5mm 8mm !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    page-break-inside: avoid;
+  }
+
+  .document-sheet::before {
+    display: none !important;
+  }
+
+  .document-header {
+    padding-bottom: 3mm !important;
+    margin-bottom: 3mm !important;
+    border-bottom: 1.5px solid #0D3B2E !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    page-break-inside: avoid;
+  }
+
+  .header-side-col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.6mm !important;
+  }
+
+  .header-line {
+    font-size: 8pt !important;
+    color: #000000 !important;
+    line-height: 1.35 !important;
+    font-weight: 500 !important;
+  }
+
+  .header-line.school-title {
+    font-size: 9pt !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+  }
+
+  .header-center-col {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0 6mm !important;
+  }
+
+  .ministry-logo-img {
+    height: 18mm !important;
+    max-width: 48mm !important;
+    object-fit: contain !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .doc-title-main {
+    font-size: 11pt !important;
+    font-weight: 800 !important;
+    color: #000000 !important;
+    margin: 0 0 0.6mm 0 !important;
+    line-height: 1.25 !important;
+  }
+
+  .header-line.doc-dynamic {
+    font-weight: 600 !important;
+    color: #000000 !important;
+  }
+
+  .table-scroll-wrapper {
+    overflow: visible !important;
+    margin-bottom: 4mm !important;
+  }
+
+  .plan-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border: 1.5px solid #0D3B2E !important;
+    page-break-inside: avoid;
+  }
+
+  .plan-table thead th {
+    background-color: #0D3B2E !important;
+    color: #FFFFFF !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    padding: 5px 6px !important;
+    font-size: 8.5pt !important;
+    border-bottom: 2px solid #C5A880 !important;
+  }
+
+  .plan-table thead th.th-subject {
+    width: 15% !important;
+    min-width: 100px !important;
+    color: #FFFFFF !important;
+  }
+
+  .plan-table thead th.th-task {
+    width: 9% !important;
+    min-width: 55px !important;
+    text-align: center !important;
+    color: #FFFFFF !important;
+  }
+
+  .plan-table thead th.th-day {
+    width: 15.2% !important;
+    min-width: 90px !important;
+  }
+
+  .day-title {
+    font-size: 8.5pt !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+  }
+
+  .day-date {
+    font-size: 6.5pt !important;
+    color: #DFC8A5 !important;
+    font-weight: 500 !important;
+    margin-top: 1px !important;
+  }
+
+  .subject-row {
+    page-break-inside: avoid !important;
+  }
+
+  .lesson-row {
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid #D8DFDB !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .homework-row {
+    background-color: #F8F8F5 !important;
+    border-bottom: 1.5px solid #0D3B2E !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .plan-table tbody td {
+    padding: 4px 5px !important;
+    border-left: 1px solid #E2E8E4 !important;
+    page-break-inside: avoid !important;
+    vertical-align: middle !important;
+  }
+
+  .td-subject {
+    background-color: #FFFFFF !important;
+    border-right: 2.5px solid #0D3B2E !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .subject-name {
+    font-size: 8.5pt !important;
+    color: #0D3B2E !important;
+    font-weight: 700 !important;
+  }
+
+  .subject-code {
+    font-size: 6pt !important;
+    color: #7B623E !important;
+    border: 1px solid #D4C7B8 !important;
+    padding: 0 3px !important;
+  }
+
+  .td-task {
+    text-align: center !important;
+    padding: 3px 2px !important;
+  }
+
+  .task-badge {
+    font-size: 7pt !important;
+    padding: 1px 3px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .task-lesson {
+    color: #0D3B2E !important;
+    background: #EDF3F0 !important;
+    border-right: 2px solid #0D3B2E !important;
+  }
+
+  .task-homework {
+    color: #7B623E !important;
+    background: #F7F3EC !important;
+    border-right: 2px solid #C5A880 !important;
+  }
+
+  .lesson-content {
+    font-size: 8pt !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+    line-height: 1.25 !important;
+  }
+
+  .homework-content {
+    font-size: 7.5pt !important;
+    font-weight: 400 !important;
+    color: #333333 !important;
+    line-height: 1.25 !important;
+  }
+
+  .doc-approval-section {
+    page-break-inside: avoid;
+    padding-top: 3mm !important;
+    margin-top: 2mm !important;
+    border-top: 1.5px solid #0D3B2E !important;
+  }
+
+  .approval-grid {
+    grid-template-columns: 1fr 1fr !important;
+    max-width: 170mm !important;
+    margin: 0 auto !important;
+    gap: 35mm !important;
+  }
+
+  .role-title {
+    margin-bottom: 1.5mm !important;
+    font-size: 8.5pt !important;
+  }
+
+  .role-name {
+    font-size: 8.5pt !important;
+    font-weight: 600 !important;
+    color: #000000 !important;
+  }
+
+  .signature-line {
+    width: 45mm !important;
+    border-bottom: 1px dashed #64748B !important;
+    margin-bottom: 1.5mm !important;
+  }
+
+  .role-sub {
+    font-size: 7.5pt !important;
+    color: #475569 !important;
+  }
+}
