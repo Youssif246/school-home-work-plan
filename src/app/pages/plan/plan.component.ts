@@ -18,6 +18,7 @@ export class PlanComponent {
   gradeSubjects: string[] = []
   subjectData: any
   weeklyHomeWork: any
+  weeklyPlaneDate: string = ""
   gradeName: string = 'الصف الأول الثانوي'
   weekName: string = 'الأسبوع الأول'
   isLoading: boolean = true;
@@ -26,7 +27,7 @@ export class PlanComponent {
     const values = this.getGradeAndWeekFromUrl()
     this.gradeName = this.getGradeLabel(values.grade)
     this.weekName = this.getWeekLabel(values.week)
-
+    this.weeklyPlaneDate = this.wps.getTheWeeklyPlaneDate(values.week)
     this.gradeSubjects = this.wps.getSubjectsByGrade(values.grade)
     this.wps.getWeeklyHomwork(values.grade, values.week).subscribe((data: any) => {
       this.weeklyHomeWork = data.data

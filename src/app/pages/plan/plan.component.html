@@ -65,6 +65,9 @@
         <h1 class="doc-title-main">الخطة الأسبوعية</h1>
         <span class="header-line doc-dynamic">{{ gradeName }}</span>
         <span class="header-line doc-dynamic">{{ weekName }}</span>
+        @if (weeklyPlaneDate) {
+        <span class="header-line doc-dynamic">{{ weeklyPlaneDate }}</span>
+        }
         <span class="header-line">الفصل الدراسي الأول</span>
         <span class="header-line">للعام الدراسي ١٤٤٨ - ١٤٤٩ هـ</span>
       </div>
