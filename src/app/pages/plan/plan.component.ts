@@ -79,4 +79,7 @@ export class PlanComponent {
     }
   }
 
+  printWeeklyPlane(): void {
+    window.print()
+  }
 }
