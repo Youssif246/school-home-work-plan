@@ -40,6 +40,60 @@
   font-size: 0.78rem;
 }
 
+.footer-developer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.86rem;
+  color: var(--color-text-secondary, #475569);
+}
+
+.developer-text {
+  font-weight: 500;
+}
+
+.whatsapp-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  direction: ltr;
+  background: var(--color-surface, #FFFFFF);
+  border: 1px solid var(--color-gold-400, #D6BD9B);
+  color: var(--color-primary-800, #09281F) !important;
+  padding: 0.38rem 1.05rem 0.38rem 0.85rem;
+  border-radius: var(--radius-pill, 9999px);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(13, 59, 46, 0.04));
+  transition: all var(--transition-normal, 240ms cubic-bezier(0.4, 0, 0.2, 1));
+  cursor: pointer;
+}
+
+.whatsapp-pill-btn:hover {
+  background: var(--color-gold-50, #FAF8F5);
+  border-color: var(--color-gold-500, #C5A880);
+  box-shadow: 0 4px 14px rgba(13, 59, 46, 0.1), 0 0 0 3px rgba(197, 168, 128, 0.18);
+  transform: translateY(-1.5px);
+}
+
+.whatsapp-pill-btn .whatsapp-icon {
+  color: #25D366;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-pill-btn:hover .whatsapp-icon {
+  transform: scale(1.1);
+}
+
+.whatsapp-pill-btn .developer-name {
+  color: var(--color-primary-800, #09281F) !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
 .footer-year {
   color: var(--color-gold-700);
   font-weight: 500;
